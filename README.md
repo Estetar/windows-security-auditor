@@ -9,15 +9,15 @@ TKaEHLhwZaM3BYT58Sxv6BubzRQasGHYYN
 
 
 
-Windows Security Test
+# Windows Security Test
 
 
-Compile:
+## Compile:
 
 g++ auditor.cpp -o auditor.exe -lws2_32 -liphlpapi -lnetapi32 -ladvapi32
 
 
-What this tool does:
+# What this tool does:
 It is a non-intrusive Auditor. That is, instead of trying to penetrate the system (like Mimikatz), it enters like a security inspector, walks around the system and lists 'open doors' or settings that weaken security.
 
 
@@ -54,3 +54,74 @@ You use this tool for Reconnaissance. Before you attempt a penetration test or s
 Who is on the system?
 What ports are open?
 What defences (UAC/Credential Guard) are disabled?
+
+
+
+
+
+
+
+# Sample Report :
+
+================================================
+          SYSTEM SECURITY AUDIT REPORT          
+================================================
+
+=== System Information ===
+Computer name: DESKTOP-T39BTE9
+Windows version: 10.0 (Build 26200)
+
+
+[+] Enumerating System Users...
+    User: Administrator | Privileges: Administrator
+    User: DefaultAccount | Privileges: Standard User
+    User: Guest | Privileges: Standard User
+    User: Jack | Privileges: Administrator
+    User: WDAGUtilityAccount | Privileges: Standard User
+    User: WsiAccount | Privileges: Standard User
+
+[+] Checking Registry Security Settings...
+    UAC (EnableLUA): ENABLED
+    Credential Guard: NOT FOUND/DISABLED
+
+[+] TCP Listening Ports (address, port, PID, process)...
+    IPv4 0.0.0.0:135 | PID: 1580 | Process: Access denied or unavailable
+    IPv4 172.16.49.130:139 | PID: 4 | Process: Access denied or unavailable
+    IPv4 172.28.32.1:139 | PID: 4 | Process: Access denied or unavailable
+    IPv4 192.168.11.1:139 | PID: 4 | Process: Access denied or unavailable
+    IPv4 192.168.43.44:139 | PID: 4 | Process: Access denied or unavailable
+    IPv4 192.168.190.1:139 | PID: 4 | Process: Access denied or unavailable
+    IPv4 127.0.0.1:902 | PID: 5332 | Process: Access denied or unavailable
+    IPv4 127.0.0.1:912 | PID: 5332 | Process: Access denied or unavailable
+    IPv4 127.0.0.1:1001 | PID: 4 | Process: Access denied or unavailable
+    IPv4 0.0.0.0:1025 | PID: 5796 | Process: Access denied or unavailable
+    IPv4 0.0.0.0:1026 | PID: 1224 | Process: Access denied or unavailable
+    IPv4 0.0.0.0:1027 | PID: 8524 | Process: Access denied or unavailable
+    IPv4 127.0.0.1:1028 | PID: 9540 | Process: explorer.exe
+    IPv4 0.0.0.0:2179 | PID: 3116 | Process: Access denied or unavailable
+    IPv4 0.0.0.0:3389 | PID: 7744 | Process: Access denied or unavailable
+    IPv4 0.0.0.0:5040 | PID: 9252 | Process: Access denied or unavailable
+    IPv4 0.0.0.0:49664 | PID: 1276 | Process: Access denied or unavailable
+    IPv4 0.0.0.0:49665 | PID: 1104 | Process: Access denied or unavailable
+    IPv4 0.0.0.0:49666 | PID: 2128 | Process: Access denied or unavailable
+    IPv4 0.0.0.0:49667 | PID: 3500 | Process: Access denied or unavailable
+    IPv4 0.0.0.0:49668 | PID: 4856 | Process: Access denied or unavailable
+    IPv4 0.0.0.0:445 | PID: 4 | Process: Access denied or unavailable
+    IPv4 0.0.0.0:3240 | PID: 5716 | Process: Access denied or unavailable
+    IPv6 :::135 | PID: 1580 | Process: Access denied or unavailable
+    IPv6 :::445 | PID: 4 | Process: Access denied or unavailable
+    IPv6 ::1:1024 | PID: 5348 | Process: Access denied or unavailable
+    IPv6 :::1025 | PID: 5796 | Process: Access denied or unavailable
+    IPv6 :::1026 | PID: 1224 | Process: Access denied or unavailable
+    IPv6 :::1027 | PID: 8524 | Process: Access denied or unavailable
+    IPv6 :::2179 | PID: 3116 | Process: Access denied or unavailable
+    IPv6 :::3240 | PID: 5716 | Process: Access denied or unavailable
+    IPv6 :::3389 | PID: 7744 | Process: Access denied or unavailable
+    IPv6 ::1:42050 | PID: 18772 | Process: OneDrive.Sync.Service.exe
+    IPv6 :::49664 | PID: 1276 | Process: Access denied or unavailable
+    IPv6 :::49665 | PID: 1104 | Process: Access denied or unavailable
+    IPv6 :::49666 | PID: 2128 | Process: Access denied or unavailable
+    IPv6 :::49667 | PID: 3500 | Process: Access denied or unavailable
+    IPv6 :::49668 | PID: 4856 | Process: Access denied or unavailable
+
+================================================
