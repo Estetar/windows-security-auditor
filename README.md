@@ -1,8 +1,19 @@
 # windows-security-auditor
+
+
+Invite me for a coffee :
+
+TKaEHLhwZaM3BYT58Sxv6BubzRQasGHYYN
+
+<img width="375" height="457" alt="photo_2026-09-23_17-29-28" src="https://github.com/user-attachments/assets/69bffec1-6c40-498f-a97f-01ac4076e75c" />
+
+
+
 Windows Security Test
 
 
 Compile:
+
 g++ auditor.cpp -o auditor.exe -lws2_32 -liphlpapi -lnetapi32 -ladvapi32
 
 
