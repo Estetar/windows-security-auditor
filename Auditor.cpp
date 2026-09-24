@@ -26,7 +26,6 @@
 
 using namespace std;
 
-// تابع اصلاح شده برای تبدیل یونیکد به استرینگ معمولی
 
 
 std::string WCharToString(const wchar_t* wstr) {
@@ -40,7 +39,6 @@ std::string WCharToString(const wchar_t* wstr) {
     if (required <= 1)
         return {};
 
-    // required شامل null terminator است
     std::string result(static_cast<size_t>(required), '\0');
 
     int written = WideCharToMultiByte(
@@ -100,7 +98,6 @@ void enumerateUsers(ofstream& report) {
 
     if (nStatus == NERR_Success) {
         for (DWORD i = 0; i < dwEntries; i++) {
-            // استفاده از تابع تبدیل برای نام کاربر
             string userName = WCharToString(pBuf[i].usri1_name);
             report << "    User: " << userName << " | Privileges: " 
                    << (pBuf[i].usri1_priv == USER_PRIV_ADMIN ? "Administrator" : "Standard User") << "\n";
@@ -153,8 +150,7 @@ std::string GetComputerNameText() {
 }
 
 std::string GetWindowsVersionText() {
-    // روش رسمی‌تر از خواندن مستقیم نسخه از رجیستری:
-    // RtlGetVersion نسخه واقعی ویندوز را برمی‌گرداند.
+   
     using RtlGetVersionFn = LONG (WINAPI*)(PRTL_OSVERSIONINFOW);
 
     HMODULE ntdll = GetModuleHandleW(L"ntdll.dll");
@@ -199,7 +195,8 @@ std::string GetProcessNameByPid(DWORD pid) {
     std::string result = "Unknown";
 
     if (QueryFullProcessImageNameW(process, 0, path, &pathSize)) {
-        // path ممکن است شامل مسیر کامل باشد؛ فقط نام فایل را نگه می‌داریم.
+    
+        
         const wchar_t* filename = path;
         for (const wchar_t* p = path; *p; ++p) {
             if (*p == L'\\' || *p == L'/')
@@ -242,7 +239,7 @@ std::string IPv6ToString(const UCHAR address[16], DWORD scopeId) {
 void reportListeningTcpPorts(std::ostream& report) {
     report << "\n[+] TCP Listening Ports (address, port, PID, process)...\n";
 
-    // ابتدا اندازهٔ بافر موردنیاز را می‌گیریم.
+  
     DWORD size = 0;
     DWORD result = GetExtendedTcpTable(
         nullptr,
@@ -275,7 +272,7 @@ void reportListeningTcpPorts(std::ostream& report) {
             for (DWORD i = 0; i < table->dwNumEntries; ++i) {
                 const auto& row = table->table[i];
 
-                // شمارهٔ پورت در ساختار به‌صورت network byte order است.
+               
                 unsigned short port =
                     ntohs(static_cast<u_short>(row.dwLocalPort));
 
@@ -293,7 +290,7 @@ void reportListeningTcpPorts(std::ostream& report) {
         }
     }
 
-    // همین بررسی برای IPv6
+   
     size = 0;
     result = GetExtendedTcpTable(
         nullptr,
